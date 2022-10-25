@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Center, Text } from "@chakra-ui/react";
+import { Center, Text, useColorMode } from "@chakra-ui/react";
 import { DateTime } from "luxon";
 import Image from "next/image";
 
@@ -20,6 +20,13 @@ const Home: React.FC = () => {
     const [date, setDate] = React.useState(
         startDate.diffNow().toFormat("MM:dd:hh:mm:ss"),
     );
+    const { colorMode, setColorMode } = useColorMode();
+
+    useEffect(() => {
+        if (colorMode !== "dark") {
+            setColorMode("dark");
+        }
+    }, []);
 
     useEffect(() => {
         setInterval(() => {
